@@ -66,7 +66,8 @@ export class RealtimeClient extends EventEmitter<ToEventFn<RealtimeClientEvents>
     private constructConnection() {
         const userAgent = this.ig.state.appUserAgent;
         const deviceId = this.ig.state.phoneId;
-        const password = `sessionid=${this.ig.state.parsedAuthorization.sessionid}`;
+        // @ts-expect-error
+        const password = `sessionid=${this.ig.state.parsedAuthorization.sessionid}`
         this.connection = new MQTToTConnection({
             clientIdentifier: deviceId.substring(0, 20),
             clientInfo: {
